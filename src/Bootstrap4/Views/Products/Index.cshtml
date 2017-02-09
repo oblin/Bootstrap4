@@ -1,63 +1,48 @@
-﻿@model IEnumerable<Bootstrap4.Models.ProductModel>
-
-@{
-    ViewData["Title"] = "Products";
-}
+﻿@model Bootstrap4.Models.ProductPagingViewModel 
+@{ ViewData["Title"] = "Products"; }
 
 <div class="container">
     <h2>Product List</h2>
 
     <p>
         <a asp-action="Create">Create New</a>
+        <button type="button" class="btn btn-outline-primary">Primary</button>
     </p>
-    <table class="table">
-        <thead>
+    <table class="table table-sm">
+        <thead class="table-inverse">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Discontinued)
+                    Product Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    Unit Price
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Status)
+                    Units in Stock
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UnitPrice)
+                    Discontinued
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UnitsInStock)
-                </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Discontinued)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnitPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnitsInStock)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
+            @foreach (var item in Model.Products) {
+            <tr class="table-@item.Status">
+                <td>@item.Name</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.UnitsInStock</td>
+                <td>@item.Discontinued</td>
+            </tr>
             }
         </tbody>
-
     </table>
+    <div>
+        <cs-pager cs-paging-pagesize="@Model.Paging.ItemsPerPage" 
+            cs-paging-pagenumber="@Model.Paging.CurrentPage" 
+            cs-paging-totalitems="@Model.Paging.TotalItems"
+            cs-pagenumber-param="page" cs-show-first-last="true" cs-suppress-empty-nextprev="true" 
+            cs-suppress-inactive-firstlast="true" cs-first-page-text="First" 
+            cs-last-page-text="Last" cs-pager-li-current-class="active" cs-pager-li-non-active-class="disabled">
+        </cs-pager>
+    </div>
 </div>

@@ -17,6 +17,7 @@ namespace Bootstrap4
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCloudscribePagination();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,6 +28,7 @@ namespace Bootstrap4
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
 
             app.UseStaticFiles();
@@ -35,7 +37,7 @@ namespace Bootstrap4
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controllerName=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
