@@ -1,0 +1,29 @@
+@using Bootstrap4.Helpers
+
+@{
+    ViewData["Title"] = "Static Method Helpers";
+}
+
+<div class="row">
+    @ButtonHelper.Button("Large Danger Button", Enums.ButtonStyle.Danger, Enums.ButtonSize.Large)
+</div>
+
+<div class="row">
+    @ButtonHelper.Button("Middle Info Button", Enums.ButtonStyle.Info, Enums.ButtonSize.Normal)
+</div>
+
+<div class="row">
+    @ButtonHelper.Button("Large Danger Button", Enums.ButtonStyle.Secondary, Enums.ButtonSize.Small)
+</div>
+
+<div class="row">
+    @Html.BootstrapButton("My Button", Enums.ButtonStyle.Info, Enums.ButtonSize.Normal)
+</div>
+
+<div class="row">
+    @using (Html.Alert("Title", Enums.AlertStyle.Success))
+    {
+        <p>Hello World</p>
+        <p>Hi, how are you, Hebe?</p>
+    }
+</div>
