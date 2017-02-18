@@ -1,5 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Home Index";
+}
+
+<div class="row">
+    <div class="col-md-6 col-sm-6" id="piechart"></div>
+
+    <div class="col-md-6 col-sm-6" id="barchart" data-dataurl='@Url.Action("SaslesPerSalesPerson", "Home")'></div>
+</div>
+<div id="png"></div>
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="~/js/home.index.js"></script>
 }

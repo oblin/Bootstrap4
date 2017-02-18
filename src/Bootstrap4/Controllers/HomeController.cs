@@ -12,5 +12,18 @@ namespace Bootstrap4.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public JsonResult SaslesPerSalesPerson()
+        {
+            List<object> data = new List<object>();
+            data.Add(new string[] { "Product", "Sales" });
+            data.Add(new object[] { "Robert King", 530 });
+            data.Add(new object[] { "Nancy Davolio", 1012 });
+            data.Add(new object[] { "Laura Callahan", 810 });
+            data.Add(new object[] { "Janet Leverling", 738 });
+
+            return Json(data);
+        }
     }
 }
